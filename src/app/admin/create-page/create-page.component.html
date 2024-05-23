@@ -1,10 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <h1>Create new post</h1>
+
+  <div
+    class="form-control"
+    [ngClass]="{invalid: form.get('title').invalid && form.get('title').touched}"
+  >
+    <label for="title">Post title:</label>
+    <input id="title" formControlName="title" type="text" >
+    <div
+      class="validation"
+      *ngIf="form.get('title').touched && form.get('title').invalid"
+    >
+      <small *ngIf="form.get('title').errors['required']">Write title name</small>
+    </div>
+  </div>
+
+    <div class="form-control">
+      <label>Content of post:</label>
+      <quill-editor formControlName="text"></quill-editor>
+    </div>
+
+    <div
+      class="form-control"
+      [ngClass]="{invalid: form.get('author').invalid && form.get('author').touched}"
+    >
+      <label for="author">Post autor:</label>
+      <input id="author" formControlName="author" type="text" >
+      <div
+        class="validation"
+        *ngIf="form.get('author').touched && form.get('author').invalid"
+      >
+        <small *ngIf="form.get('author').errors['required']">Write autor of post</small>
+      </div>
+  </div>
+
+  <button
+    type="submit"
+    class="btn btn-block btn-dark"
+    [disabled]="form.invalid"
+  >Create post</button>
+</form>
