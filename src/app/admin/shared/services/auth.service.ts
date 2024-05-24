@@ -4,7 +4,7 @@ import {IFbAuthResponse, IUser} from "../../../shared/interfaces";
 import {catchError, Observable, Subject, tap, throwError} from "rxjs";
 import {environment} from "../../../../environments/environment";
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 
 export class AuthService {
 

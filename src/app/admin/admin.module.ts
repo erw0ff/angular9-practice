@@ -8,9 +8,9 @@ import {LoginPageComponent} from "./login-page/login-page.component";
 import {CreatePageComponent} from "./create-page/create-page.component";
 import {DashboardPageComponent} from "./dashboard-page/dashboard-page.component";
 import {EditPageComponent} from "./edit-page/edit-page.component";
-import {AuthService} from "./shared/services/auth.service";
 import {SharedModule} from "../shared/shared.module";
 import {AuthGuard} from "./shared/services/auth.guard";
+import {SearchPipe} from "./shared/search.pipe";
 
 
 
@@ -20,7 +20,7 @@ const routes: Routes = [
       {path: 'login', component: LoginPageComponent},
       {path: 'create', component: CreatePageComponent, canActivate: [AuthGuard]},
       {path: 'dashboard', component: DashboardPageComponent, canActivate: [AuthGuard]},
-      {path: 'post/:id', component: EditPageComponent, canActivate: [AuthGuard]}
+      {path: 'post/:id/edit', component: EditPageComponent, canActivate: [AuthGuard]}
     ]
   }
 ]
@@ -32,7 +32,8 @@ const routes: Routes = [
     LoginPageComponent,
     CreatePageComponent,
     DashboardPageComponent,
-    EditPageComponent
+    EditPageComponent,
+    SearchPipe
   ],
   imports: [
     FormsModule,
@@ -42,7 +43,7 @@ const routes: Routes = [
     SharedModule
   ],
   exports: [RouterModule],
-  providers: [AuthService, AuthGuard],
+  providers: [AuthGuard],
 })
 
 export class AdminModule {
