@@ -26,7 +26,6 @@ export class PostService {
   getAll() {
     return this.http.get(`${environment['fbDbUrl']}/posts.json`)
       .pipe(
-        tap(response => console.log(response)),
         map((response: {[key: string]: any}) => {
         return Object
           .keys(response)
@@ -39,5 +38,27 @@ export class PostService {
           })
 
       }))
+  }
+
+  getById(id: string): Observable<IPost> {
+    return this.http.get<IPost>(`${environment['fbDbUrl']}/posts/${id}.json`)
+      .pipe(
+        map((post: IPost) => {
+          return {
+            ...post,
+            id,
+            date: new Date(post.date),
+          }
+        })
+      )
+  }
+
+  remove(id: string): Observable<void> {
+    console.log('response ID remove: ', id)
+    return this.http.delete<void>(`${environment['fbDbUrl']}/posts/${id}.json`)
+  }
+
+  update(post: IPost): Observable<IPost> {
+    return this.http.patch<IPost>(`${environment['fbDbUrl']}/posts/${post.id}.json`, post)
   }
 }

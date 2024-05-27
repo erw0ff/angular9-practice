@@ -11,6 +11,8 @@ import {EditPageComponent} from "./edit-page/edit-page.component";
 import {SharedModule} from "../shared/shared.module";
 import {AuthGuard} from "./shared/services/auth.guard";
 import {SearchPipe} from "./shared/search.pipe";
+import {AlertComponent} from "./shared/components/alert/alert.component";
+import {AlertService} from "./shared/services/alert.service";
 
 
 
@@ -33,7 +35,8 @@ const routes: Routes = [
     CreatePageComponent,
     DashboardPageComponent,
     EditPageComponent,
-    SearchPipe
+    SearchPipe,
+    AlertComponent
   ],
   imports: [
     FormsModule,
@@ -43,7 +46,7 @@ const routes: Routes = [
     SharedModule
   ],
   exports: [RouterModule],
-  providers: [AuthGuard],
+  providers: [AuthGuard, AlertService],
 })
 
 export class AdminModule {

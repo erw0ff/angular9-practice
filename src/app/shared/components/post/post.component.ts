@@ -1,4 +1,5 @@
-import {Component} from "@angular/core";
+import {Component, Injectable, Input, OnInit} from "@angular/core";
+import {IPost} from "../../interfaces";
 
 @Component({
   selector: 'app-post',
@@ -6,6 +7,14 @@ import {Component} from "@angular/core";
   styleUrls: ['./post.component.scss']
 })
 
-export class PostComponent {
+export class PostComponent implements OnInit{
+
+  @Input() post: IPost
+
+  constructor() {}
+
+  ngOnInit(): void {
+
+  }
 
 }
